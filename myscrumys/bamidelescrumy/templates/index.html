@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+    <style>
+    table,th,td{
+        border-collapse: collapse;
+    }
+    </style>
+
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Add User</th>
+                <th>No</th>
+                <th>User</th>
+                <th>Add Task</th>
+                <th>Weekly Goals</th>
+                <th>Daily Goals</th>
+                <th>Verify</th>
+                <th>Done</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+           Total Numbers of scrumyusers: 
+            {% for users in allusers %}
+            <tr>
+                <td><a href="{% url 'add_user' %}">+</a></td>
+                <td>{{users.id}}</td>
+                <td>{{users}}</td>
+                <td><a href="{% url 'add_task' %}">+</a></td>
+                <td>
+                       
+                       {% for goal in goals %}
+                       {% for gol in goal.scrumygoals_set.all %}
+                       {% if gol.user_id == users %}
+                    
+                        <li>  <a href="{% url 'move_task' task_id=gol.id %}">{{gol.title}}</a></li>
+                    
+                       {% endif %}
+                       {% endfor %}
+                       {% endfor %}
+                       
+                  
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

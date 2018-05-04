@@ -1,0 +1,15 @@
+<form method="post">
+    {% if form.errors %}
+    {% for error in field.errors %}
+    <div class="invalid-feedback">
+        {{error}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% csrf_token %}
+    <label>Username: </label>
+    <input type="text" name="username"><br>
+    <label>Password: </label>
+    <input type="password" name="password"><br>
+    <input type="submit">
+</form>
