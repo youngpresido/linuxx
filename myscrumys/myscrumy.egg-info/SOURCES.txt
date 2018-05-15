@@ -5,6 +5,7 @@ setup.py
 bamidelescrumy/__init__.py
 bamidelescrumy/admin.py
 bamidelescrumy/apps.py
+bamidelescrumy/authentication.py
 bamidelescrumy/forms.py
 bamidelescrumy/models.py
 bamidelescrumy/tests.py
@@ -14,6 +15,11 @@ bamidelescrumy/migrations/0001_initial.py
 bamidelescrumy/migrations/0002_auto_20180421_1021.py
 bamidelescrumy/migrations/0003_auto_20180421_1025.py
 bamidelescrumy/migrations/0004_auto_20180426_1002.py
+bamidelescrumy/migrations/0005_scrumyuser_username.py
+bamidelescrumy/migrations/0006_scrumyuser_password.py
+bamidelescrumy/migrations/0007_auto_20180514_2127.py
+bamidelescrumy/migrations/0008_auto_20180515_1230.py
+bamidelescrumy/migrations/0009_scrumyuser_last_login.py
 bamidelescrumy/migrations/__init__.py
 myscrumy/__init__.py
 myscrumy/settings.py

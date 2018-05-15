@@ -7,6 +7,7 @@
     <title>Edit Task</title>
 </head>
 <body>
+    
         <h1>Edit Tasks</h1>
         <form method="post">
             {% csrf_token %}
@@ -17,9 +18,25 @@
                 </div>
                 {% endfor %}
             {% endif %}
-        
-                {{ forms.as_p }}
-                <button type="submit" class="btn btn-success">Update</button>
+            <div>
+            {{forms.user_id.label_tag}}
+            {{ forms.user_id }}
+            </div><br>
+            <div>
+            {{forms.title.label_tag}}
+            {{ forms.title }}
+            </div><br>
+            <div>
+            {{forms.task.label_tag}}
+            {{ forms.task }}
+            </div><br>
+            <div>
+            {{forms.status.label_tag}}
+            {{ forms.status }}
+            </div><br>
+                <button type="submit" class="btn btn-success">Update</button><spa> {% if st %}
+                        <p style="color:red;">{{st}}</p>
+                        {% endif %}</spa>
             </form>
     
 </body>

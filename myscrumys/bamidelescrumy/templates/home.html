@@ -45,7 +45,7 @@
                         
                             
                         
-                            {% if owner or developer %}
+                            {% if owner %}
                             <li> <a href="{% url 'move_task' task_id=gol.id %}">{{gol.title}}</a> </li>
                             {% else %}
                             <li> {{gol.title}}</li>
@@ -68,7 +68,7 @@
                          
                              
                          
-                             {% if owner or developer or admin %}
+                             {% if owner or developer %}
                              <li> <a href="{% url 'move_task' task_id=gol.id %}">{{gol.title}}</a> </li>
                              {% else %}
                              <li> {{gol.title}}</li>
@@ -90,7 +90,7 @@
                          
                              
                          
-                             {% if owner or admin or qa %}
+                             {% if owner or developer %}
                              <li> <a href="{% url 'move_task' task_id=gol.id %}">{{gol.title}}</a> </li>
                              {% else %}
                              <li> {{gol.title}}</li>
@@ -111,7 +111,7 @@
                          
                              
                          
-                             {% if owner or qa %}
+                             {% if owner or developer %}
                              <li> <a href="{% url 'move_task' task_id=gol.id %}">{{gol.title}}</a> </li>
                              {% else %}
                              <li> {{gol.title}}</li>

@@ -8,17 +8,28 @@
 </head>
 <body>
         <h1>Add Users</h1>
-        <form method="post">
-            {% csrf_token %}
-            {% if form.errors %}
+        {% if form.errors %}
             {% for error in field.errors %}
                 <div class="invalid-feedback">
                     {{error}}
                 </div>
                 {% endfor %}
             {% endif %}
-        
-                {{ forms.as_p }}
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                    <td>{{ forms.name.label_tag }}</td>
+                    <td>{{ forms.name }}</td><br>
+                <td>{{ forms.username.label_tag }}</td>
+                <td>{{ forms.username }}</td> <br>
+                <td>{{ forms.email.label_tag }}</td>
+                <td>{{ forms.email }}</td><br>
+                <td>{{ forms.role.label_tag}}</td>
+                <td>{{ forms.role }}</td><br>
+                <td>{{ forms.password.label_tag}}</td>
+                <td>{{ forms.password }}</td><br>
+                <td>{{ forms.password2.label_tag}}</td>
+                <td>{{ forms.password2 }}</td><br>
                 <button type="submit" class="btn btn-success">Add user</button>
             </form>
     

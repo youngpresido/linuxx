@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            table,th,td{
+                border-collapse: collapse;
+            }
+            </style>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Weekly Goals</th>
+                <th>Daily Goals</th>
+                <th>Verify</th>
+                <th>Done</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% if object_list.count < 1 %}
+                <p>nothing </p>
+                {% else %}
+                
+                <td>
+                        {% for object in object_list %}
+                        {% if object.status.name == "WTS" %}
+                     <li>{{object}}</li>
+                     {% endif %}
+                     {% endfor %}
+                    
+                </td> 
+                
+                <td>
+                        {% for object in object_list %}
+                        {% if object.status.name == "DTS" %}
+                     <li>{{object}}</li>
+                     {% endif %}
+                     {% endfor %}
+                    
+                </td> 
+                <td>
+                        {% for object in object_list %}
+                        {% if object.status.name == "Verify" %}
+                     <li>{{object}}</li>
+                     {% endif %}
+                     {% endfor %}
+                    
+                </td> 
+                <td>
+                        {% for object in object_list %}
+                        {% if object.status.name == "Done" %}
+                     <li>{{object}}</li>
+                     {% endif %}
+                     {% endfor %}
+                    
+                </td> 
+                
+              
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

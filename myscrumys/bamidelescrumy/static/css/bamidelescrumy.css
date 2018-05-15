@@ -1,0 +1,10 @@
+table th{
+    color:#00ff6a;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+table,th,td{
+    border-collapse: collapse;
+    paddding:12px;
+}
