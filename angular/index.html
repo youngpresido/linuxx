@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Linuxjobber</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+    <!-- <div class="container">
+    <h1 class="head">My TaskManager</h1>
+    <!--html table-->
+    <!-- <table border="1" id="table">
+        <thead>
+            <tr>
+
+                <th>Name</th>
+                <th>Add Task</th>
+                <th>Weekly Target</th>
+                <th>Daily Target</th>
+                <th>Verify</th>
+                <th>Done</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="first">Femi</td>
+                <td>+</td>
+                <td></td>
+                <td>Html</td>
+                <td>Pending</td>
+                <td>Pending</td>
+            </tr>
+            <tr>
+                <td>Taiwo</td>
+                <td>+</td>
+                <td><li onClick="delete_task(this)">Learn Css</li>
+                    <li>Learn Javascript</li>
+                </td>
+                <td>Django</td>
+                <td>Pending</td>
+                <td id="last">Pending</td>
+            </tr>
+            
+                <button onClick="add_user()">Add User</button>
+                <button onClick="delete_task(this)">Delete</button>
+            
+        </tbody>
+
+    </table>
+    <p id="new"></p>
+    
+    
+    <br><br><br> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+    <div ng-app="myApp" ng-controller="formCtrl" ng-init="names=[
+        {
+            name:'taiwo',
+            task:'bootstrap',
+            daily:'Agric',
+            weekly:'I dont know',
+            verify:'Agric',
+            done:'not'
+        },
+        {
+            name:'seun',
+            task:'bootstrap',
+            daily:'Nike',
+            weekly:'I dont know',
+            verify:'Agric',
+            done:'not'
+        }
+    
+      
+    ]">
+    <header ng-click="changeHeader($event)">My Task Manager</header>
+                   <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Add Task</th>
+                        <th>Weekly Target</th>
+                        <th>Daily Task</th>
+                        <th>Verify</th>
+                        <th>Done</th>
+                    </tr>
+                    <tr ng-repeat="x in names">
+                        <td>{{x.name}}</td>
+                        <td>{{x.task}}</td>
+                        <td>{{x.daily}}</td>
+                        <td>{{x.weekly}}</td>
+                        <td>{{x.verify}}</td>
+                        <td>{{x.done}}</td>
+                    </tr>
+                </table>
+            <w3-test-directive></w3-test-directive>
+            <h1 class='w3-test-directive'></h1>
+            <form name="myForm">
+                    Email: <input type="text" ng-model="email" name="email"><p>{{myForm.email.$valid}}</p>
+                    <span style="color:red;" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                        Email is required</span>
+                    <span ng-show="myForm.email.$error.email">Invalid email addresss</span>
+                    <br>
+
+                    Phone:<input type="text" ng-model="phone" name="phone">
+                    <span style="color:red;" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+                            Phone Number is required</span>
+                        <span ng-show="myForm.phone.$error.phone">Invalid phone number</span>
+                    <input type="submit" ng-disabled="myForm.email.$dirty && myForm.email.$invalid
+                    || myForm.phone.$dirty && myForm.phone.$invalid">  
+                </form>
+
+                    <br><hr>
+                <form name="secondForm">
+                    <textarea name="body" ng-model="body"></textarea> <span ng-show="secondForm.body.$touched && secondForm.body.$empty">the field is required</span>
+                    <input type="submit">
+
+                </form>
+       
+        <p>Radius of circle <input type="number" ng-model="number"> </p>
+        <h1>Hello {{email}}</h1>
+        <p>The area of the circle {{44*number/7}}</p>
+    </div>
+    </div>
+    
+    <script>
+        var app=angular.module('myApp',[]);
+        app.controller('formCtrl',function($scope){
+            $scope.email="";
+            $scope.phone="";
+            $scope.changeHeader=function(this){
+                    this.innerHTML="My Dynamic Scrummy";
+            }
+        });
+        app.directive("w3TestDirective", function(){
+            return {
+                    restrict: 'AC',
+                    template: "<h5>Femi is a boy </h5>"
+            };
+        });
+    </script>
+    <script src="js/script.js"></script>
+</body>
+</html>

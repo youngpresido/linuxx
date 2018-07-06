@@ -1,0 +1,18 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+table, th, td{
+    border-collapse: collapse;
+}
+table{
+    padding:24px;
+    margin:0 auto;
+}
+table td,table th{
+    padding: 12px;
+}
+.head{
+    text-align:center;
+}
