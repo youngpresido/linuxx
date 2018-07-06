@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404,redirect
+from django.shortcuts import render,get_object_or_404,redirect, render_to_response
 from django.http import HttpResponse,Http404
 from django.contrib.auth.models import User
 from django.template import loader
@@ -13,6 +13,12 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User, Group
 # Create your views here.
+
+
+def angular(request):
+    return render(request,'index.html',{})
+
+
 class GoalsView(ListView):
     queryset=ScrumyGoals.objects.all()
     template_name='goals.html'
@@ -47,7 +53,7 @@ def index(request):
     # return 
    
     print(request.user)
-    return render(request,'index.html',{'allusers':alluser,
+    return render(request,'indexs.html',{'allusers':alluser,
     'goals':goals,
     'daily':daily,
     'verify':verify, 
@@ -95,7 +101,7 @@ def move_task(request,task_id=None):
 
             if form.is_valid():
                 form.save()
-                return redirect('index')
+                return redirect('indexs')
         elif user.role=="Developer" and status in ["WTS","DTS"]:
             form=AddTasks(request.POST, instance=goals)
 
@@ -124,7 +130,7 @@ def add_task(request):
                 user_id=form.cleaned_data.get('user_id'),
                 status=form.cleaned_data.get('status')
             )
-            return redirect('index')
+            return redirect('indexs')
     else:
         form=AddTasks(request.POST)
     return render(request,'add_task.html',{'forms':form})
@@ -159,7 +165,7 @@ def add_user(request):
             )
             # auth_login(request,users)
             # print(auth_login)
-            return redirect('index')
+            return redirect('indexs')
     else:
         form=AddUserForm(request.POST)
     return render(request,'add_user.html',{'forms':form})
@@ -177,9 +183,9 @@ def test(request):
     if users is not None:
         auth_login(request,users,backend='bamidelescrumy.authentication.EmailAuthBackend')
         #print(auth_login(request,users))
-        return redirect('index')
+        return redirect('indexs')
     else:
-        return None
+        return render(request, 'loginsystem.html',{})
     
         
         
@@ -190,7 +196,22 @@ def singleuser(request,id):
        users=ScrumyUser.objects.get(pk=id)
     except ScrumyUser.DoesNotExist:
         raise Http404('No user with this id')
-    return render(request,'user.html',{'users':users})
+    print(users)
+    if request.method=='POST':
+        form=AddUserForm(request.POST,instance=users)
+        print(form.is_valid())
+        if form.is_valid():
+            form.save()
+            return redirect('indexs')
+        else:
+            form=AddUserForm(request.POST,instance=users)
+    else:
+        form=AddUserForm(instance=users)
+
+       
+
+    
+    return render(request,'edit_user.html',{'instance':users, 'forms':form})
 
 # def signup(request):
 # 	if request.method=='POST':

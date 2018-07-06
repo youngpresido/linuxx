@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bamidelescrumy.css' %}">
+    <title>Index</title>
+
+
+</head>
+<body>
+    <h4>Current Logged in user: {{user.username}}</h4>
+    <div class="mytable">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Add User</th>
+                <th>No</th>
+                <th>User</th>
+                <th>Add Task</th>
+                <th>Weekly Goals</th>
+                <th>Daily Goals</th>
+                <th>Verify</th>
+                <th>Done</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+           Total Numbers of scrumyusers: {{ userscount }}
+            {% for users in allusers %}
+            <tr>
+                <td><a href="{% url 'add_user' %}">+</a></td>
+                <td>{{users.id}}</td>
+                <td><a href="{% url 'singleuser' users.id %}">{{users}}</a></td>
+                <td><a href="{% url 'add_task' %}">+</a></td>
+                <td>
+                       
+                     
+                       {% for gol in users.scrumygoals_set.all %}
+                       {% if gol.user_id.name == users.name and  gol.status.name == "WTS" %}
+                      
+                        
+                            
+                        
+                            {% if owner or developer %}
+                            <li> <a href="{% url 'move_task' task_id=gol.id %}">{{gol.title}}</a> </li>
+                            {% else %}
+                            <li> {{gol.title}}</li>
+                            {% endif %}
+    
+                       
+                    
+                       {% endif %}
+                       {% endfor %}
+                       
+                       
+                  
+                </td>
+                <td>
+                    
+                        
+                        {% for gol in users.scrumygoals_set.all %}
+                        {% if gol.user_id.name == users.name and  gol.status.name == "DTS" %}
+                       
+                         
+                             
+                         
+                             {% if owner or developer or admin %}
+                             <li> <a href="{% url 'move_task' task_id=gol.id %}">{{gol.title}}</a> </li>
+                             {% else %}
+                             <li> {{gol.title}}</li>
+                             {% endif %}
+     
+                        
+                     
+                        {% endif %}
+                        {% endfor %}
+                     
+                    
+                </td>
+                <td>
+                    
+                    
+                        {% for gol in users.scrumygoals_set.all %}
+                        {% if gol.user_id.name == users.name and  gol.status.name == "Verify" %}
+                       
+                         
+                             
+                         
+                             {% if owner or admin or qa %}
+                             <li> <a href="{% url 'move_task' task_id=gol.id %}">{{gol.title}}</a> </li>
+                             {% else %}
+                             <li> {{gol.title}}</li>
+                             {% endif %}
+     
+                        
+                     
+                        {% endif %}
+                        {% endfor %}
+                  
+                </td>
+                <td>
+                  
+                        
+                        {% for gol in users.scrumygoals_set.all %}
+                        {% if gol.user_id.name == users.name and  gol.status.name == "Done" %}
+                       
+                         
+                             
+                         
+                             {% if owner or qa %}
+                             <li> <a href="{% url 'move_task' task_id=gol.id %}">{{gol.title}}</a> </li>
+                             {% else %}
+                             <li> {{gol.title}}</li>
+                             {% endif %}
+     
+                        
+                     
+                        {% endif %}
+                        {% endfor %}
+                     
+                    
+                </td>
+                
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>

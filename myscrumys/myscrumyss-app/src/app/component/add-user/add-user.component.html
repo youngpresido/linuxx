@@ -1,0 +1,55 @@
+<hr>
+<div class="container">
+<div class="card">
+  <div class="card-header">
+    Register User
+  </div>
+  <div class="card-block">
+    <form novalidate #f="ngForm" (ngSubmit)="registerUser(f)" >
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input [(ngModel)]="register.name" name="name" class="form-control" #userreg="ngModel" required/>
+        <div *ngIf="userreg.errors?.required && userreg.touched" class="alert alert-danger">
+          name is required
+        </div>
+      </div>
+        <div class="form-group">
+        <label for="username">Username</label>
+        <input [(ngModel)]="register.username"  name="username" class="form-control" #userusername="ngModel" required/>
+        <div *ngIf="userusername.errors?.required && userusername.touched" class="alert alert-danger">
+          Username is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input #useremail="ngModel" [(ngModel)]="register.email" name="email" class="form-control" required/>
+        <div *ngIf="useremail.errors?.required && useremail.touched" class="alert alert-danger">
+          Email is required
+        </div>
+      </div>
+      <!-- <div class="form-group">
+        <label for="name">Role</label>
+        <input #userrole="ngModel" [(ngModel)]="register.role" placeholder="Role" name="role" class="form-control"/>
+        <div *ngIf="useremail.errors?.required && useremail.touched" class="alert alert-danger">
+          Email is required
+        </div> -->
+      <!-- </div> -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input #userpassword="ngModel" [(ngModel)]="register.password1" type="password" name="password1" class="form-control" required/>
+        <div *ngIf="userpassword.errors?.required && userpassword.touched" class="alert alert-danger">
+          Password is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirm_password">Confirm Password</label>
+        <input #userconfirm="ngModel" [(ngModel)]="register.password2" type="password" name="password2" class="form-control" required/>
+        <div *ngIf="userconfirm.errors?.required && userconfirm.touched" class="alert alert-danger">
+          required
+        </div>
+      </div>
+        <input type="submit" class="btn btn-primary btn-block" value="register">
+  </form>
+</div>
+</div>
+</div>

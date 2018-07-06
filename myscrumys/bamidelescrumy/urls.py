@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 
-
 urlpatterns=[
     
     # path('signup/',views.signup, name="signup"),
@@ -13,6 +12,8 @@ urlpatterns=[
     path("goals/", views.GoalsView.as_view(), name="goals"),
     path('', views.index,name="index"),
    
+   
+    path('angular/', views.angular, name="angular"),
     path('<id>/',views.singleuser,name="singleuser"),
     path('move_task/<int:task_id>/',views.move_task,name="move_task"),
     

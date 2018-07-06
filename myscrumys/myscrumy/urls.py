@@ -15,13 +15,35 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf.urls import url
 from django.contrib.auth import views as auth_views
-
-
+import rest_framework
+from rest_framework.authtoken.views import ObtainAuthToken 
+from rest_framework_jwt.views import obtain_jwt_token,refresh_jwt_token,verify_jwt_token
+from rest_framework.routers import DefaultRouter
+from bamidelescrumy.apiviews import ScrumyUserList,ScrumyGoalsList,GoalStatusList
+router=DefaultRouter()
+router.register(r'scrumyusers',ScrumyUserList)
+router.register(r'scrumygoals',ScrumyGoalsList)
+router.register(r'goalstatus',GoalStatusList)
 admin.autodiscover()
 urlpatterns = [
+    path('register/', include('rest_auth.registration.urls')),
+    path('auth/', ObtainAuthToken.as_view()),
+    # path('jwt-auth/',jwt_auth.views.obtain_jwt_token),
+    path('api-token-refresh/', refresh_jwt_token),
+    path('api-token-verify/', verify_jwt_token),
+    path('',include(router.urls)),
     path('bamidele/', include('bamidelescrumy.urls')),
     path('accounts/',include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
+    path('api-auth/',include('rest_framework.urls', namespace='rest_framework')),
+    # path('api/',ScrumyUserList.as_view({'get':"list",'post':"create"})),
+    # path('api/<int:pk>/',ScrumyUserList.as_view({'get':"list",'post':"create"})),
+    # path('api/goals/',ScrumyGoalsList.as_view({'get':"list",'post':"create"})),
+    # path('api/goals/<int:pk>/',ScrumyGoalsList.as_view({'get':"list",'post':"create"})),
+    # path('api/status',GoalStatusList.as_view({'get':"list",'post':"create"})),
+    # path('api/status/<int:pk>/',GoalStatusList.as_view({'get':"list",'post':"create"}))
     
 ]
+

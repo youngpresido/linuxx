@@ -1,0 +1,55 @@
+
+<div class="container">
+        <div class="text-center"><h1>My Task Manager</h1></div>
+      <div class="table-responsive-md">
+     <table class="table table-hover">
+         <thead class="thead-dark">
+             <tr class="bg-primary">
+                 <th>No</th>
+                 <th>Name</th>
+                 <th>Email</th>
+                 <th>Role</th>
+                 <th>Daily Target</th>
+                 <th>Weekly Target</th>
+                 <th>Verify</th>
+                 <th>Done</th>
+             </tr>
+         </thead>
+         <tbody>
+             <tr scope="row" ng-repeat="x in data">
+                 <td>{{x.id}}</td>
+                  <td> {{x.name}}</td>
+                  <td>{{x.email}}</td>
+                  <td>{{x.role}}</td>
+                
+                  <td><ul class="list-group">
+                      <span ng-repeat="(key,value) in x.scrumygoals">
+                     <li class="list-group-item" ng-if="x.scrumygoals[key].status.name=='DTS'">{{x.scrumygoals[key].title}}</li><br>
+                     </span>
+                     </ul>
+                  </td>
+                  <td><ul class="list-group">
+                          <span ng-repeat="(key,value) in x.scrumygoals">
+                         <li class="list-group-item" ng-if="x.scrumygoals[key].status.name=='WTS'">{{x.scrumygoals[key].title}}</li><br>
+                         </span>
+                         </ul>
+                      </td>
+                      <td><ul class="list-group">
+                              <span ng-repeat="(key,value) in x.scrumygoals">
+                             <li class="list-group-item" ng-if="x.scrumygoals[key].status.name=='Verify'">{{x.scrumygoals[key].title}}</li><br>
+                             </span>
+                             </ul>
+                          </td>
+                          <td><ul class="list-group">
+                                  <span ng-repeat="(key,value) in x.scrumygoals">
+                                 <li  class="list-group-item" ng-if="x.scrumygoals[key].status.name=='Done'">{{x.scrumygoals[key].title}}</li><br>
+                                 </span>
+                                 </ul>
+                              </td>
+                  
+             </tr>
+         </tbody>
+     </table>
+     </div>
+     </div>
+  

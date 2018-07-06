@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <h1>Edit User</h1>
+        {% if form.errors %}
+            {% for error in field.errors %}
+                <div class="invalid-feedback">
+                    {{error}}
+                </div>
+                {% endfor %}
+            {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                    <td>{{ forms.name.label_tag }}</td>
+                    <td>{{ forms.name }}</td><br>
+                <td>{{ forms.username.label_tag }}</td>
+                <td>{{ forms.username }}</td> <br>
+                <td>{{ forms.email.label_tag }}</td>
+                <td>{{ forms.email }}</td><br>
+                <td>{{ forms.role.label_tag}}</td>
+                <td>{{ forms.role }}</td><br>
+                <td>{{ forms.password.label_tag}}</td>
+                <td>{{ forms.password }}</td><br>
+                <td>{{ forms.password2.label_tag}}</td>
+                <td>{{ forms.password2 }}</td><br>
+                <button type="submit" class="btn btn-success">Add user</button>
+            </form>
+    
+</body>
+</html>

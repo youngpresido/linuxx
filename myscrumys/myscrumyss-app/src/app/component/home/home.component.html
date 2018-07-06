@@ -1,0 +1,57 @@
+<div class="container">
+        <div class="text-center"><h1>My Task Manager</h1></div>
+      <div class="table-responsive-md">
+     <table class="table table-hover" *ngIf="scrumygoals?.length > 0;else nousers">
+         <thead class="thead-dark">
+             <tr class="bg-primary">
+			<th>ID</th>
+			<th>Users</th>
+			<th>Daily Goals</th>
+			<th>Weekly Goals</th>
+			<th>Verify</th>
+			<th>Done</th>
+		</tr>
+
+	</thead>
+	<tbody>
+		<tr *ngFor="let goals of scrumygoals; let i=index">
+			<td>{{goals.id}}</td>
+
+			<th>{{goals.username}}</th>
+			<td *ngIf="goals.scrumygoals" [dragula]='"bag-one"' [dragulaModel]='items'>
+				<ul class="list-group" *ngFor="let gol of goals.scrumygoals">
+				
+						<li class="list-group-item" *ngIf="gol.status.name=='DTS' ">{{gol.title}}</li>
+			
+					</ul>
+			</td>
+			<td [dragula]='"bag-one"' [dragulaModel]='items'>
+				<ul class="list-group" *ngFor="let gol of goals.scrumygoals" >
+						
+						<li class="list-group-item" *ngIf="gol.status.name=='WTS' ">{{gol.title}}</li>
+			
+					</ul>
+			</td>
+			<td [dragula]='"bag-one"' [dragulaModel]='items'>
+				<ul class="list-group" *ngFor="let gol of goals.scrumygoals">
+						<li class="list-group-item"  *ngIf="gol.status.name=='Verify' ">{{gol.title}}</li>
+			
+					</ul>
+			</td>
+			<td [dragula]='"bag-one"' [dragulaModel]='items'>
+				<ul class="list-group" *ngFor="let gol of goals.scrumygoals" >
+						<li class="list-group-item" *ngIf="gol.status.name=='Done' ">{{gol.title}}</li>
+			
+					</ul>
+			</td>
+			<!-- <td>
+				<button class="btn btn-danger btn-sm" (click)="onDelete(goals.id)">Delete</button>
+			</td> -->
+		</tr>
+	</tbody>	
+</table>
+
+<ng-template #nousers>
+	<hr>
+	<h5>There are no Users in the system</h5>
+</ng-template>
